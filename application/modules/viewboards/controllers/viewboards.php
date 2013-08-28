@@ -39,6 +39,26 @@ class Viewboards extends Base_Controller {
         $this->layout->buffer('content', 'viewboards/step4');
         $this->layout->render();
     }
+    public function step5()
+    {    
+        $this->layout->buffer('content', 'viewboards/step5');
+        $this->layout->render();
+    }
+    public function step6()
+    {    
+        $this->layout->buffer('content', 'viewboards/step6');
+        $this->layout->render();
+    }
+    public function step7()
+    {    
+        $this->layout->buffer('content', 'viewboards/step7');
+        $this->layout->render();
+    }
+    public function step8()
+    {    
+        $this->layout->buffer('content', 'viewboards/step8');
+        $this->layout->render();
+    }
 }
 
 ?>

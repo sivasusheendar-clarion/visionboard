@@ -12,34 +12,28 @@
         height: 500px;
     }
      .mainDivTarget{
-            position:relative;
-             width: 100px;
+        position:relative;
+        width: 100px;
         height: 100px;
      }
-    .mainTarget{position:absolute; width:300px; height:200px;}
-
-
-.target{
-    position:absolute;
-    height:20px;
-    width:20px;
-    background:url(/assets/image/pin.png) no-repeat top center #ffffff;
-    background-size:100%;
-    cursor:pointer; 
-    z-index:1; 
-    top:0; 
-    right:0;    
-}
+    .mainTarget{
+        position:absolute; 
+        width:300px; 
+        height:200px;
+    }
+    .target{
+        position:absolute;
+        height:20px;
+        width:20px;
+        background:url(/assets/image/pin.png) no-repeat top center #ffffff;
+        background-size:100%;
+        cursor:pointer; 
+        z-index:1; 
+        top:0; 
+        right:0;    
+    }
 </style>
-<!--<form class="form-search">
-  <div class="input-append">
-     <input type="text" class="span6 search-query btn-large" placeholder="Type here..." style="padding: 11px 19px;font-size: 17.5px;">
-       <button type="submit" class="btn btn-large">
-          <i class="icon-search"></i>
-          Search
-      </button>
-   </div>
-</form>-->
+
 <hr>
 <h3>Step 1</h3>
 
@@ -110,9 +104,10 @@ $(function()
                                               if (response.data) { 
                                                   
                                                   $('#images-list').html('<ul></ul>');
+                                                  console.log(response.data.length);
                                                   for(var i = 0; i < response.data.length; i++)
                                                     {   
-                                                         $('#images-list ul').append('<li style="float: left;"><img width="100" height="100" src="/assets/image/'+response.data[i]+'"/></li>');
+                                                         $('#images-list ul').append('<li style="float: left;"><img width="100" height="100"  id="'+response.data[i][1]+'" src="'+response.data[i][0]+'"/></li>');
                                                     }
                                                     
                                                     $('#images-list ul li').click(function(){  
@@ -139,7 +134,7 @@ $(function()
                                 img = $('#images-list ul li.highlight img'); 
                                 for(var i = 0; i < img.length; i++)
                                 {   
-                                    $('#vision-board').append('<div class="mainDivTarget" id="'+i+'"><img width="100" height="100"  src="'+img[i].src+'"><div class="target">&nbsp;</div></div>');
+                                    $('#vision-board').append('<div class="mainDivTarget" id="'+i+'"><img width="100" height="100"   id="'+img[i].id+'" src="'+img[i].src+'"><div class="target">&nbsp;</div></div>');
                                 }
                                // $( "#vision-board img" ).draggable();
                                $( ".mainDivTarget" ).draggable( { containment: "#vision-board", scroll: false });
@@ -200,6 +195,7 @@ $(function()
                                             ar['data'][i][$.trim(key)] =$.trim(value);
                                     });   
                                     ar['data'][i]['src'] = $(img).find('img').attr('src');
+                                     ar['data'][i]['image_id'] = $(img).find('img').attr('id');
                            }
                            console.log(ar.length);
                            console.log(ar);
